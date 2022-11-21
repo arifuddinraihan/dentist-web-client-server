@@ -81,8 +81,12 @@ async function run() {
         })
         // Use Aggreagate to query multiple collection and then merge data
         app.get('/bookings', async (req, res) => {
-            const query = {};
+            const email = req.query.email;
+            const query = {
+                email: email
+            };
             const allBookingDetails = await bookingDetailsCollection.find(query).toArray();
+            console.log(allBookingDetails)
             res.send(allBookingDetails)
         })
 
